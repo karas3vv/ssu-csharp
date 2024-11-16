@@ -3,56 +3,66 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace pr9_II_n18
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            string file1 = "file1.txt";
-            string file2 = "file2.txt";
-            string resultPath = "result.txt";
-
-            try
+            // Открываем файлы для чтения
+            using (StreamReader reader1 = new StreamReader("D:/Projects/C#/pr9_II_n18/file1.txt"))
             {
-                // Читаем числа из файлов и преобразуем в массивы
-                int[] numbers1 = File.ReadAllLines(file1).Select(int.Parse).ToArray();
-                int[] numbers2 = File.ReadAllLines(file2).Select(int.Parse).ToArray();
-
-                // Проверяем, что файлы имеют одинаковое количество чисел
-                if (numbers1.Length != numbers2.Length)
+                using (StreamReader reader2 = new StreamReader("D:/Projects/C#/pr9_II_n18/file2.txt"))
                 {
-                    Console.WriteLine("Файлы содержат разное количество чисел.");
-                    return;
-                }
-
-                using (StreamWriter writer = new StreamWriter(resultPath))
-                {
-                    for (int i = 0; i < numbers1.Length; i++)
+                    using (StreamWriter resultFile = new StreamWriter("D:/Projects/C#/pr9_II_n18/result.txt"))
                     {
-                        int num1 = numbers1[i];
-                        int num2 = numbers2[i];
+                        char[] separators = { ' ', '\t', '\n', '\r' };
+                        string line1, line2;
 
-                        // Проверяем делимость и записываем частное в новый файл, если делится
-                        if (num1 % num2 == 0)
+                        // Читаем построчно до конца файлов
+                        int[] numbers1 = { };
+                        while ((line1 = reader1.ReadLine()) != null)
                         {
-                            writer.WriteLine(num1 / num2);
+                            string[] temp = line1.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                            for (int i = 0; i < temp.Length; ++i)
+                            {
+                                Array.Resize(ref numbers1, numbers1.Length + 1);
+                                numbers1[numbers1.Length - 1] = int.Parse(temp[i]);
+                            }
                         }
-                        else if (num2 % num1 == 0)
+
+                        int[] numbers2 = { };
+                        while ((line2 = reader2.ReadLine()) != null)
                         {
-                            writer.WriteLine(num2 / num1);
+                            string[] temp = line2.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                            for (int i = 0; i < temp.Length; ++i)
+                            {
+                                Array.Resize(ref numbers2, numbers2.Length + 1);
+                                numbers2[numbers2.Length - 1] = int.Parse(temp[i]);
+                            }
+                        }
+
+                        // Запись данных в файл
+                        for (int i = 0; i < numbers1.Length; ++i)
+                        {
+                            // Проверка делимости
+                            if (numbers1[i] != 0 && numbers1[i] % numbers2[i] == 0)
+                            {
+                                resultFile.WriteLine(numbers1[i] / numbers2[i]);
+                            }
+                            else if (numbers2[i] != 0 && numbers2[i] % numbers1[i] == 0)
+                            {
+                                resultFile.WriteLine(numbers2[i] / numbers1[i]);
+                            }
                         }
                     }
+                    Console.WriteLine("Результат записан в файл result.txt");
                 }
-
-                Console.WriteLine("Результат записан в файл: " + resultPath);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ошибка: " + ex.Message);
             }
         }
+
     }
-}
+}               

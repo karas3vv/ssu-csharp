@@ -43,8 +43,6 @@ namespace pr7_VI_n3
                 // Если четных элементов нет, то вставляем строку с нулями
                 if (!hasEven)
                 {
-                    int[] zeroRow = new int[array[i].Length];
-
                     // Увеличиваем размер массива и сдвигаем строки вниз
                     Array.Resize(ref array, array.Length + 1);
                     for (int j = array.Length - 1; j > i + 1; j--)
@@ -53,7 +51,7 @@ namespace pr7_VI_n3
                     }
 
                     // Вставляем строку с нулями после текущей строки
-                    array[i + 1] = zeroRow;
+                    array[i + 1] = new int[rows];
 
                     // Пропускаем добавленную строку с нулями
                     i++;
