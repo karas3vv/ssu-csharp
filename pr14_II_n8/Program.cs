@@ -26,7 +26,7 @@ namespace pr14_II_n8
         // Реализация метода CompareTo для сортировки по сумме вклада (по убыванию)
         public int CompareTo(Contributor other)
         {
-            return this.Amount.CompareTo(other.Amount);
+            return -this.Amount.CompareTo(other.Amount);
         }
 
         public override string ToString()
