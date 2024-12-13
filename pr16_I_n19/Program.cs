@@ -14,7 +14,7 @@ namespace pr16_I_n19
             // Список для хранения чисел
             List<int> numbers = new List<int>();
 
-            // Чтение файла построчно с использованием StreamReader
+
             using (StreamReader reader = new StreamReader("D:/Projects/ssu-csharp/pr16_I_n19/input.txt"))
             {
                 string line;
@@ -28,12 +28,12 @@ namespace pr16_I_n19
                 }
             }
 
-            // LINQ-запрос с использованием from ... where ... orderby ... select
-            var result = (from n in numbers
-                          where n % 2 == 0      // Фильтрация четных чисел
-                          orderby n             // Сортировка по возрастанию
-                          select n / 2)         // Уменьшение каждого числа в два раза
-                          .ToArray();
+            var result = numbers
+                        .Where(n => n % 2 == 0)               // Фильтрация четных чисел
+                        .OrderBy(n => n)                      // Сортировка по возрастанию
+                        .Select(n => n > 0 ? n / 2 : n * 2)   // Уменьшение каждого числа в два раза
+                        .ToArray();
+
 
             // Запись результата в файл
             using (StreamWriter writer = new StreamWriter("D:/Projects/ssu-csharp/pr16_I_n19/output.txt"))

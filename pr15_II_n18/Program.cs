@@ -49,10 +49,10 @@ namespace pr15_II_n18
                                           {
                                               var parts = line.Split(';');
                                               return new Student(
-                                                  parts[0],               // Фамилия
-                                                  parts[1],               // Факультет
+                                                  parts[0].Trim(),        // Фамилия
+                                                  parts[1].Trim(),        // Факультет
                                                   int.Parse(parts[2]),    // Курс
-                                                  parts[3],               // Группа
+                                                  parts[3].Trim(),        // Группа
                                                   int.Parse(parts[4]),    // Экзамен 1
                                                   int.Parse(parts[5]),    // Экзамен 2
                                                   int.Parse(parts[6])     // Экзамен 3
@@ -60,28 +60,26 @@ namespace pr15_II_n18
                                           })
                                           .ToList();
 
-            // Фильтрация студентов с хотя бы одной двойкой
-            var filteredStudents = students.Where(s => s.Exam1 < 3 || s.Exam2 < 3 || s.Exam3 < 3);
-
-            // Группировка по факультету и сортировка по алфавиту факультетов
-            var groupedByFaculty = filteredStudents.GroupBy(s => s.Faculty)
-                                                   .OrderBy(g => g.Key);
+            var filteredStudents = from s in students
+                                   where s.Exam1 < 3 || s.Exam2 < 3 || s.Exam3 < 3
+                                   group s by s.Faculty into g
+                                   orderby g.Key
+                                   select g;
 
             // Запись результата в файл
             using (StreamWriter writer = new StreamWriter(outputFile))
             {
-                foreach (var group in groupedByFaculty)
+                foreach (var group in filteredStudents)
                 {
                     writer.WriteLine($"Факультет: {group.Key}");
                     foreach (var student in group)
                     {
                         writer.WriteLine(student.ToString());
                     }
-                    writer.WriteLine(); // Пустая строка для разделения факультетов
+                    writer.WriteLine();
                 }
             }
             Console.WriteLine("Информация записана в файл output.txt.");
         }
     }
-
 }

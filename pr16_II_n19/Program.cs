@@ -49,10 +49,10 @@ namespace pr16_II_n19
                                           {
                                               var parts = line.Split(',');
                                               return new Student(
-                                                  parts[0].Trim(),               // Фамилия
-                                                  parts[1].Trim(),               // Факультет
+                                                  parts[0].Trim(),        // Фамилия
+                                                  parts[1].Trim(),        // Факультет
                                                   int.Parse(parts[2]),    // Курс
-                                                  parts[3].Trim(),               // Группа
+                                                  parts[3].Trim(),        // Группа
                                                   int.Parse(parts[4]),    // Экзамен 1
                                                   int.Parse(parts[5]),    // Экзамен 2
                                                   int.Parse(parts[6])     // Экзамен 3
@@ -66,7 +66,6 @@ namespace pr16_II_n19
                 .OrderBy(s => s.Course)
                 .ToList();
 
-            // Проверка наличия данных для записи
             if (excellentStudents.Count == 0)
             {
                 Console.WriteLine("Нет студентов, обучающихся на \"отлично\".");
@@ -77,7 +76,7 @@ namespace pr16_II_n19
             File.WriteAllLines(outputFile, excellentStudents.Select(s =>
                 $"{s.Surname}, {s.Faculty}, {s.Course}, {s.Group}, {s.Exam1}, {s.Exam2}, {s.Exam3}"));
 
-            Console.WriteLine($"Файл успешно создан: {outputFile}");
+            Console.WriteLine($"Данные записаны в output.txt");
         }
     }
 }
