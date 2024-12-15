@@ -19,13 +19,13 @@ namespace pr17_I_n8
             line = new string(' ', length);
         }
 
-        // На основе заданного строкового литерала;
+        // на основе заданного строкового литерала;
         public ImmutableString(string line)
         {
             this.line = string.Copy(line);
         }
 
-        // На основе существующего экземпляра класса (конструктор копирования).
+        // на основе существующего экземпляра класса (конструктор копирования).
         public ImmutableString(ImmutableString other)
         {
             line = string.Copy(other.line);
@@ -44,7 +44,7 @@ namespace pr17_I_n8
             return count;
         }
 
-        // Подсчитать сумму цифр в строке.
+        // подсчитать сумму цифр в строке.
         public int SumOfDigits()
         {
             int sum = 0;
@@ -52,7 +52,7 @@ namespace pr17_I_n8
             {
                 if (Char.IsDigit(c))
                 {
-                    sum += c - '0';  // Преобразуем символ в число
+                    sum += c - '0';  // преобразуем символ в число
                 }
             }
             return sum;
@@ -80,9 +80,6 @@ namespace pr17_I_n8
             return string.Equals(this.line, other.line, StringComparison.OrdinalIgnoreCase);
         }
 
-        // GetType перегружается автоматически
-
-
         // 5. Свойство: для получения доступа к закрытому полю класса (доступное для чтения и записи);
         // Если отсутствует set - доступно только для чтения. Если отсутствует get - доступно только для записи.
         public string Line
@@ -91,7 +88,7 @@ namespace pr17_I_n8
             set { line = string.Copy(value); }
         }
 
-        // Возвращающее общее количество символов в строке (доступное только для чтения);
+        // возвращающее общее количество символов в строке (доступное только для чтения);
         public int TotalLength
         {
             get
@@ -124,15 +121,24 @@ namespace pr17_I_n8
             return myString.TotalLength != 0;
         }
 
-        // Констант true и false: обращение к экземпляру класса дает значение true если строка
+        // констант true и false: обращение к экземпляру класса дает значение true если строка
         // является палиндромом, false – противном случае;
 
         public static bool IsPalindrome(ImmutableString myString)
         {
-            char[] charArray = myString.Line.ToCharArray();
-            Array.Reverse(charArray);
-            string reversed = new string(charArray);
-            return string.Equals(myString.Line, reversed, StringComparison.OrdinalIgnoreCase);
+            int start = 0;
+            int end = myString.TotalLength - 1;
+
+            while (start < end)
+            {
+                if (char.ToLower(myString[start]) != char.ToLower(myString[end]))
+                {
+                    return false;
+                }
+                start++;
+                end--;
+            }
+            return true;
         }
 
         public static bool operator true(ImmutableString myString)
@@ -145,7 +151,7 @@ namespace pr17_I_n8
             return !IsPalindrome(myString);
         }
 
-        // Операции &: возвращает значение true, если строковые поля двух объектов
+        // операции &: возвращает значение true, если строковые поля двух объектов
         // посимвольно равны (без учета регистра), иначе false;
         public static bool operator &(ImmutableString obj1, ImmutableString obj2)
         {
@@ -161,13 +167,13 @@ namespace pr17_I_n8
             return true;
         }
 
-        // Операции преобразования класса-строка в тип string (и наоборот) строку в класс
+        // операции преобразования класса-строка в тип string (и наоборот) строку в класс
         public static implicit operator ImmutableString(string s)
         {
             return new ImmutableString(s);
         }
 
-        // Класс в строку
+        // класс в строку
         public static implicit operator string(ImmutableString s)
         {
             return string.Copy(s.Line);
@@ -188,20 +194,21 @@ namespace MyProgram
                     string inputLine = input.ReadLine();
                     ImmutableString immutableString = new ImmutableString(inputLine);
 
-                    output.WriteLine($"Строка: {immutableString.ToString()}");
-
+                    output.WriteLine($"Исходная строка: {immutableString.ToString()}");
                     int digitCount = immutableString.CountDigits();
                     output.WriteLine($"3. Количество цифр: {digitCount}");
-
                     int digitSum = immutableString.SumOfDigits();
                     output.WriteLine($"3. Сумма цифр: {digitSum}");
-
                     output.WriteLine($"6. Символ на заданной позиции: {immutableString[9]}");
                     output.WriteLine($"5. Длина строки: {immutableString.TotalLength}");
 
                     output.WriteLine($"4. Хеш-код строки: {immutableString.GetHashCode()}");
-                    output.WriteLine($"4. Равны ли два объекта: {immutableString.Equals(new ImmutableString("test"))}");
-                    output.WriteLine($"4. Равны ли два объекта: {immutableString.Equals(new ImmutableString("Hellow World! 52 1703 Saint-Petersburg"))}");
+
+                    string strFor4p1 = "test";
+                    output.WriteLine($"4. Равны ли два объекта (сравнение со строкой - {strFor4p1}): {immutableString.Equals(new ImmutableString(strFor4p1))}");
+
+                    string strFor4p2 = "hello world 1703 1 1 3071 dlrow olleh";
+                    output.WriteLine($"4. Равны ли два объекта (сравнение bсо строкой - {strFor4p2}): {immutableString.Equals(new ImmutableString(strFor4p2))}");
                     output.WriteLine($"4. Тип строки: {immutableString.GetType()}");
 
                     output.WriteLine($"7. Проверка на пустоту: {!immutableString}");
@@ -216,8 +223,8 @@ namespace MyProgram
 
                     output.WriteLine($"7. Является ли строка палиндромом: {ImmutableString.IsPalindrome(immutableString)}");
 
-                    ImmutableString myString2 = new ImmutableString("HELLO WORLD 1703 1 1 3071 DLROW OLLEH");
-                    output.WriteLine($"7. Равны ли две строки посимвольно: {immutableString & myString2}");
+                    ImmutableString myString2 = new ImmutableString("HELLO WORLD 1702 1 1 2071 DLROW OLLEH");
+                    output.WriteLine($"7. Равны ли две строки посимвольно (сравнение со строкой {myString2}): {immutableString & myString2}");
 
 
                     string testString = "test";
