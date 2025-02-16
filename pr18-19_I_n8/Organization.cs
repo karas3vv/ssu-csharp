@@ -9,8 +9,6 @@ namespace pr17_18_I_n8
     internal class Organization : PhoneDirectory 
     {
         public string Name { get; set; }
-        public string Address { get; set; }
-        public override string PhoneNumber { get; set; }
         public string Fax { get; set; }
         public string ContactPerson { get; set; }
 

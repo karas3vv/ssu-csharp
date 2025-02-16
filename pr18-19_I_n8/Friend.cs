@@ -9,9 +9,6 @@ namespace pr17_18_I_n8
 {
     internal class Friend : PhoneDirectory
     {
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public override string PhoneNumber { get; set; }
         public string BirthDate { get; set; }
 
         public Friend(string lastName, string address, string phoneNumber, string birthDate)

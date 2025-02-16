@@ -1,0 +1,7 @@
+Person;Ivanov;Lenina St., 10;123-456
+Organization;Romashka LLC;Pushkina St., 5;111-222;333-444;Petrov
+Friend;Sidorov;Gagarina St., 15;555-666;01.01.1990
+
+Person;Petrov;Stalina St., 22;122-656
+Organization;Globus ;Korporativnaya St., 5;111-222;333-444;Sidorov
+Friend;Michailov;Gagarina St., 15;555-666;11.08.1995

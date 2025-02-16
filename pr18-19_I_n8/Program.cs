@@ -9,9 +9,10 @@ namespace pr17_18_I_n8
 {
     internal class Program
     {
+        private static readonly string pathInput = "D:/Projects/ssu-csharp/pr18-19_I_n8/input.txt";
         static void Main(string[] args)
         {
-            string[] lines = File.ReadAllLines("input.txt");
+            string[] lines = File.ReadAllLines(pathInput);
 
             // создаем массив записей
             PhoneDirectory[] database = new PhoneDirectory[lines.Length];
@@ -37,7 +38,7 @@ namespace pr17_18_I_n8
             Array.Sort(database);
 
             // вывод полной информации из бд
-            Console.WriteLine("База данных (отсортированна по номеру телефона):");
+            Console.WriteLine("База данных (отсортированна по номеру телефона)");
             foreach (var entry in database)
             {
                 entry.PrintInfo();
@@ -47,7 +48,7 @@ namespace pr17_18_I_n8
             Console.WriteLine("\nВведите фамилию:");
             string criterion = Console.ReadLine();
 
-            using (StreamWriter writer = new StreamWriter("output.txt"))
+            using (StreamWriter writer = new StreamWriter("D:/Projects/ssu-csharp/pr18-19_I_n8/output.txt"))
             {
                 writer.WriteLine("Результат:");
                 foreach (var entry in database)

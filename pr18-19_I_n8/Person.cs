@@ -8,10 +8,6 @@ namespace pr17_18_I_n8
 {
     internal class Person : PhoneDirectory
     {
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public override string PhoneNumber { get; set; }
-
         public Person(string lastName, string address, string phoneNumber)
         {
             LastName = lastName;
