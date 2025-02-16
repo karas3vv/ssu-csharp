@@ -46,7 +46,8 @@
     <Compile Include="Friend.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="Person.cs" />
-    <Compile Include="PhoneDirectory.cs" />
+    <Compile Include="PhoneDirectoryItem.cs" />
+    <Compile Include="PhoneDirectoty.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

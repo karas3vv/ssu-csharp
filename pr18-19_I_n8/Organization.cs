@@ -6,29 +6,26 @@ using System.Threading.Tasks;
 
 namespace pr17_18_I_n8
 {
-    internal class Organization : PhoneDirectory 
+    internal class Organization : PhoneDirectoryItem
     {
-        public string Name { get; set; }
         public string Fax { get; set; }
         public string ContactPerson { get; set; }
 
-        public Organization(string name, string address, string phone, string fax, string contactPerson)
+        public Organization(string name, string address, string phoneNumber, string fax, string contactPerson)
+            : base(name, address, phoneNumber)
         {
-            Name = name;
-            Address = address;
-            PhoneNumber = phone;
             Fax = fax;
             ContactPerson = contactPerson;
         }
 
-        public override void PrintInfo()
+        public override void DisplayInfo()
         {
-            Console.WriteLine($"Организация: {Name}, Адрес: {Address}, Телефон: {PhoneNumber}, Факс: {Fax}, Контактное лицо: {ContactPerson}");
+            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone Number: {PhoneNumber}, Fax: {Fax}, Contact Person: {ContactPerson}");
         }
 
-        public override bool MatchesCriterion(string criterion)
+        public override bool MatchesSearchCriterion(string criterion)
         {
-            return Name.Contains(criterion) || ContactPerson.Contains(criterion);
+            return Name.Equals(criterion, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

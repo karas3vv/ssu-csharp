@@ -1,28 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace pr17_18_I_n8
 {
-    internal class Person : PhoneDirectory
+    internal class Person : PhoneDirectoryItem
     {
-        public Person(string lastName, string address, string phoneNumber)
+        public Person(string name, string address, string phoneNumber): base(name, address, phoneNumber)
         {
-            LastName = lastName;
-            Address = address;
-            PhoneNumber = phoneNumber;
         }
 
-        public override void PrintInfo()
+        public override void DisplayInfo()
         {
-            Console.WriteLine($"Персона: {LastName}, Адрес: {Address}, Телефон: {PhoneNumber}");
+            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone Number: {PhoneNumber}");
         }
 
-        public override bool MatchesCriterion(string criterion)
+        public override bool MatchesSearchCriterion(string criteria)
         {
-            return LastName.Contains(criterion);
+            return Name.Equals(criteria, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

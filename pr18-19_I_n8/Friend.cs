@@ -1,32 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace pr17_18_I_n8
 {
-    internal class Friend : PhoneDirectory
+    internal class Friend : Person
     {
-        public string BirthDate { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
-        public Friend(string lastName, string address, string phoneNumber, string birthDate)
+        public Friend(string name, string address, string phoneNumber, DateTime dateOfBirth)
+            : base(name, address, phoneNumber)
         {
-            LastName = lastName;
-            Address = address;
-            PhoneNumber = phoneNumber;
-            BirthDate = birthDate;
+            DateOfBirth = dateOfBirth;
         }
 
-        public override void PrintInfo()
+        public override void DisplayInfo()
         {
-            Console.WriteLine($"Друг: {LastName}, Адрес: {Address}, Телефон: {PhoneNumber}, Дата рождения: {BirthDate}");
+            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone Number: {PhoneNumber}, Date of Birth: {DateOfBirth.ToShortDateString()}");
         }
 
-        public override bool MatchesCriterion(string criterion)
+        public override bool MatchesSearchCriterion(string criteria)
         {
-            return LastName.Contains(criterion);
+            return Name.Equals(criteria, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
