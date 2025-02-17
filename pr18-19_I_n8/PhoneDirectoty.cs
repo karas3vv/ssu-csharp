@@ -9,7 +9,7 @@ namespace pr17_18_I_n8
 {
     internal class PhoneDirectory
     {
-        private List<PhoneDirectoryItem> items;
+        public List<PhoneDirectoryItem> items;
 
         public PhoneDirectory()
         {

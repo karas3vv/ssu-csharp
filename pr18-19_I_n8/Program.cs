@@ -11,10 +11,7 @@ namespace pr17_18_I_n8
         static void Main()
         {
             PhoneDirectory directory = new PhoneDirectory();
-            directory.LoadDataFromFile("phone_directory.txt");
-
-            Console.WriteLine("Full information from the database before sorting:");
-            directory.DisplayAllItems();
+            directory.LoadDataFromFile("D:/Projects/ssu-csharp/pr18-19_I_n8/input.txt");
 
             directory.SortByPhoneNumber();
 

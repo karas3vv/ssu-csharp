@@ -20,7 +20,7 @@ namespace pr17_18_I_n8
 
         public override void DisplayInfo()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone Number: {PhoneNumber}, Fax: {Fax}, Contact Person: {ContactPerson}");
+            Console.WriteLine($"Organization: {Name}, Address: {Address}, Phone Number: {PhoneNumber}, Fax: {Fax}, Contact Person: {ContactPerson}");
         }
 
         public override bool MatchesSearchCriterion(string criterion)

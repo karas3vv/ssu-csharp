@@ -18,7 +18,7 @@ namespace pr17_18_I_n8
 
         public override void DisplayInfo()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone Number: {PhoneNumber}, Date of Birth: {DateOfBirth.ToShortDateString()}");
+            Console.WriteLine($"Friend: {Name}, Address: {Address}, Phone Number: {PhoneNumber}, Date of Birth: {DateOfBirth.ToShortDateString()}");
         }
 
         public override bool MatchesSearchCriterion(string criteria)

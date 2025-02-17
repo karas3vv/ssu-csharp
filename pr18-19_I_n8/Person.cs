@@ -16,7 +16,7 @@ namespace pr17_18_I_n8
 
         public override void DisplayInfo()
         {
-            Console.WriteLine($"Name: {Name}, Address: {Address}, Phone Number: {PhoneNumber}");
+            Console.WriteLine($"Person: {Name}, Address: {Address}, Phone Number: {PhoneNumber}");
         }
 
         public override bool MatchesSearchCriterion(string criteria)
