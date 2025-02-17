@@ -10,20 +10,19 @@ namespace pr17_18_I_n8
     {
         public DateTime DateOfBirth { get; set; }
 
-        public Friend(string name, string address, string phoneNumber, DateTime dateOfBirth)
-            : base(name, address, phoneNumber)
+        public Friend(string name, string address, string phoneNumber, DateTime dateOfBirth): base(name, address, phoneNumber)
         {
             DateOfBirth = dateOfBirth;
         }
 
         public override void DisplayInfo()
         {
-            Console.WriteLine($"Friend: {Name}, Address: {Address}, Phone Number: {PhoneNumber}, Date of Birth: {DateOfBirth.ToShortDateString()}");
+            Console.WriteLine($"Друг: {Name}, Адрес: {Address}, Номер телефона: {PhoneNumber}, Дата ДР: {DateOfBirth.ToShortDateString()}");
         }
 
-        public override bool MatchesSearchCriterion(string criteria)
+        public override bool MatchesSearchCriterion(string criterion)
         {
-            return Name.Equals(criteria, StringComparison.OrdinalIgnoreCase);
+            return Name.Equals(criterion, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

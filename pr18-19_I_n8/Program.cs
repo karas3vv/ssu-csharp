@@ -15,17 +15,17 @@ namespace pr17_18_I_n8
 
             directory.SortByPhoneNumber();
 
-            Console.WriteLine("\nFull information from the database after sorting by phone number:");
+            Console.WriteLine("\nПолная информация из базы данных, отсортированная по номеру телефона:");
             directory.DisplayAllItems();
 
-            Console.Write("\nEnter a name to search: ");
+            Console.Write("\nВведите фамилию: ");
             string nameToSearch = Console.ReadLine();
 
             var searchResults = directory.SearchByName(nameToSearch);
 
             if (searchResults.Count > 0)
             {
-                Console.WriteLine("\nFound records:");
+                Console.WriteLine("\nНайденные записи:");
                 foreach (var item in searchResults)
                 {
                     item.DisplayInfo();
@@ -33,7 +33,7 @@ namespace pr17_18_I_n8
             }
             else
             {
-                Console.WriteLine("\nNo records found with the specified name.");
+                Console.WriteLine("\nЗаписи не найдены");
             }
         }
     }

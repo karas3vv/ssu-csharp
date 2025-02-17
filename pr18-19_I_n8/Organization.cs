@@ -8,24 +8,23 @@ namespace pr17_18_I_n8
 {
     internal class Organization : PhoneDirectoryItem
     {
+        public string OrganizationName { get; set; } 
         public string Fax { get; set; }
-        public string ContactPerson { get; set; }
 
-        public Organization(string name, string address, string phoneNumber, string fax, string contactPerson)
-            : base(name, address, phoneNumber)
+        public Organization(string organizationName, string address, string phoneNumber, string fax, string name): base(name, address, phoneNumber)
         {
+            OrganizationName = organizationName;
             Fax = fax;
-            ContactPerson = contactPerson;
         }
 
         public override void DisplayInfo()
         {
-            Console.WriteLine($"Organization: {Name}, Address: {Address}, Phone Number: {PhoneNumber}, Fax: {Fax}, Contact Person: {ContactPerson}");
+            Console.WriteLine($"Организация: {OrganizationName}, Адрес: {Address}, Номер телеофна: {PhoneNumber}, Факс: {Fax}, Контактное лицо: {Name}");
         }
 
-        public override bool MatchesSearchCriterion(string criterion)
+        public override bool MatchesSearchCriterion(string criteriion)
         {
-            return Name.Equals(criterion, StringComparison.OrdinalIgnoreCase);
+            return Name.Equals(criteriion, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

@@ -16,12 +16,12 @@ namespace pr17_18_I_n8
 
         public override void DisplayInfo()
         {
-            Console.WriteLine($"Person: {Name}, Address: {Address}, Phone Number: {PhoneNumber}");
+            Console.WriteLine($"Персона: {Name}, Адрес: {Address}, Номер телефона: {PhoneNumber}");
         }
 
-        public override bool MatchesSearchCriterion(string criteria)
+        public override bool MatchesSearchCriterion(string criterion)
         {
-            return Name.Equals(criteria, StringComparison.OrdinalIgnoreCase);
+            return Name.Equals(criterion, StringComparison.OrdinalIgnoreCase);
         }
     }
 }

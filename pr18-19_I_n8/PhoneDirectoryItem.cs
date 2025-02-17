@@ -20,7 +20,7 @@ namespace pr17_18_I_n8
         }
 
         public abstract void DisplayInfo();
-        public abstract bool MatchesSearchCriterion(string criteria);
+        public abstract bool MatchesSearchCriterion(string criterion);
 
         public int CompareTo(PhoneDirectoryItem other)
         {
@@ -28,5 +28,4 @@ namespace pr17_18_I_n8
             return string.Compare(this.PhoneNumber, other.PhoneNumber, StringComparison.Ordinal);
         }
     }
-
 }

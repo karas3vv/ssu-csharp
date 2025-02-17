@@ -40,7 +40,7 @@ namespace pr17_18_I_n8
                                     items.Add(new Friend(data[1], data[2], data[3], DateTime.Parse(data[4])));
                                 break;
                             default:
-                                throw new ArgumentException("Unknown item type");
+                                throw new ArgumentException("Неизвестный тип");
                         }
                     }
                 }
