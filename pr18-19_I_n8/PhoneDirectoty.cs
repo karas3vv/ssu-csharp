@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace pr17_18_I_n8
 {
+    [Serializable]
     internal class PhoneDirectory
     {
         public List<PhoneDirectoryItem> items;
@@ -37,7 +38,7 @@ namespace pr17_18_I_n8
                                 break;
                             case "Friend":
                                 if (data.Length >= 5)
-                                    items.Add(new Friend(data[1], data[2], data[3], DateTime.Parse(data[4])));
+                                    items.Add(new Friend(data[1], data[2], data[3], data[4]));
                                 break;
                             default:
                                 throw new ArgumentException("Неизвестный тип");

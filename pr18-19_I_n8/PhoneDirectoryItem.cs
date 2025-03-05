@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace pr17_18_I_n8
 {
+    [Serializable]
     internal abstract class PhoneDirectoryItem : IComparable<PhoneDirectoryItem>
     {
-        protected string Name { get; set; }
-        protected string Address { get; set; }
-        protected string PhoneNumber { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
 
         public PhoneDirectoryItem(string name, string address, string phoneNumber)
         {
@@ -18,13 +19,15 @@ namespace pr17_18_I_n8
             Address = address;
             PhoneNumber = phoneNumber;
         }
+        abstract public string ToStr();
 
         public abstract void DisplayInfo();
         public abstract bool MatchesSearchCriterion(string criterion);
 
         public int CompareTo(PhoneDirectoryItem other)
         {
-            if (other == null) return 1;
+            if (other == null) 
+                return 1;
             return string.Compare(this.PhoneNumber, other.PhoneNumber, StringComparison.Ordinal);
         }
     }
